@@ -1,0 +1,40 @@
+{
+  "name": "cxl-hooks",
+  "version": "1.0.0",
+  "description": "a react custom hooks library",
+  "main": "index.js",
+  "scripts": {
+    "build:types": "tsc",
+    "build": "npm run build:types && rollup --config",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "chenxlkamino",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.18.9",
+    "@babel/preset-env": "^7.18.9",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "rollup": "^2.77.2",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-typescript": "^1.0.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "react": "^17.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chenxlkamino/cxl-hooks.git"
+  },
+  "keywords": [
+    "cxl-hooks",
+    "react",
+    "typescript"
+  ],
+  "bugs": {
+    "url": "https://github.com/chenxlkamino/cxl-hooks/issues"
+  },
+  "homepage": "https://github.com/chenxlkamino/cxl-hooks"
+}
