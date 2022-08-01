@@ -1,2 +1,2 @@
-# cxl-hooks-lib
-rollup发布测试
+# cxl-hooks
+a react custom hooks library
