@@ -1,6 +1,5 @@
-import React from "react";
-import useMemoFn from "./useMemoFn";
-import { invariant } from "../utils";
+import { useRef, useEffect } from "react";
+import useMemoFn from "../useMemoFn";
 
 const useEventListener = (
   node: () => HTMLElement | HTMLElement,
@@ -8,18 +7,14 @@ const useEventListener = (
   callback: Function,
   capture = false
 ) => {
-
-  invariant(typeof eventName === "string", "eventName is not a string");
-  invariant(eventName, "eventName is empty");
-
-  const listenerRef = React.useRef();
+  const listenerRef = useRef<Function | null>(null);
   listenerRef.current = callback;
 
   const nodeFn = useMemoFn(typeof node === "function" ? node : () => node);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const target = nodeFn();
-    if (!target) return;
+    if (!target || typeof eventName !== "string") return;
 
     target.addEventListener(eventName, listenerRef.current, capture);
 

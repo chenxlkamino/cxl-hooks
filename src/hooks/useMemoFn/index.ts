@@ -1,14 +1,15 @@
-import React from "react";
-import { invariant } from "../utils";
+import { useRef, useCallback } from "react";
 
 const useMemoFn = (callback: Function) => {
-  invariant(typeof callback === "function", "callback is not a function");
-
-  const callbackRef = React.useRef();
+  const callbackRef = useRef<Function | null>(null);
   callbackRef.current = callback;
 
-  return React.useCallback(
+  return useCallback(
     (...args: any) => {
+      if (typeof callbackRef.current !== "function") {
+        return;
+      }
+
       return callbackRef.current(...args);
     },
     [callbackRef]

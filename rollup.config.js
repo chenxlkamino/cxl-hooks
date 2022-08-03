@@ -2,9 +2,11 @@ import resolve from "@rollup/plugin-node-resolve";
 import babel from "@rollup/plugin-babel";
 import commonjs from "rollup-plugin-commonjs";
 import typescript from "rollup-plugin-typescript";
+import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import { terser } from "rollup-plugin-terser";
 
 export default {
-  input: "src/hooks/index.ts", // 打包入口
+  input: "src/index.ts", // 打包入口
   output: {
     // 打包出口
     file: "dist/index.js",
@@ -12,7 +14,7 @@ export default {
     name: "cxl-hooks", // cdn方式引入时挂载在window上面用的就是这个名字
     sourcemap: true,
     globals: {
-        react: "React",
+      react: "React",
     },
   },
   plugins: [
@@ -21,5 +23,8 @@ export default {
     commonjs(), // 将 CommonJS 转换成 ES2015 模块供 Rollup 处理
     typescript(), // 解析TypeScript
     babel({ babelHelpers: "bundled" }), // babel配置,编译es6
+    terser(),
+    peerDepsExternal(),
   ],
+  externals: ["react"],
 };
