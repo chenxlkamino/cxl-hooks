@@ -1,18 +1,22 @@
-import { useRef, useCallback } from "react";
+import { useRef, useCallback } from 'react';
+import { invariant } from '../../utils';
 
-const useMemoFn = (callback: Function) => {
-  const callbackRef = useRef<Function | null>(null);
+type noop = (...args: any[]) => any;
+
+const useMemoFn = <T extends noop>(callback: T) => {
+  const callbackRef = useRef<T | null>(null);
   callbackRef.current = callback;
 
   return useCallback(
-    (...args: any) => {
-      if (typeof callbackRef.current !== "function") {
-        return;
-      }
+    (...args: any[]) => {
+      invariant(
+        typeof callbackRef.current === 'function',
+        'callback is not a function',
+      );
 
-      return callbackRef.current(...args);
+      return callbackRef.current?.apply(null, args) as ReturnType<T>;
     },
-    [callbackRef]
+    [callbackRef],
   );
 };
 

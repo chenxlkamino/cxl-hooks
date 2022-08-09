@@ -1,5 +1,9 @@
-import { act, renderHook, RenderHookResult } from '@testing-library/react-hooks';
-import useMemoFn from "../index";
+import {
+  act,
+  renderHook,
+  RenderHookResult,
+} from '@testing-library/react-hooks';
+import useMemoFn from '../index';
 import { useState } from 'react';
 
 const TestHooks = () => {
@@ -16,12 +20,12 @@ const TestHooks = () => {
 
 let hook: RenderHookResult<[], ReturnType<typeof TestHooks>>;
 
-describe("useMemoFn", () => {
-  it("should be defined", () => {
+describe('useMemoFn', () => {
+  it('should be defined', () => {
     expect(useMemoFn).toBeDefined();
   });
 
-it('useMemoFn should work', () => {
+  it('useMemoFn should work', () => {
     act(() => {
       hook = renderHook(() => TestHooks());
     });
