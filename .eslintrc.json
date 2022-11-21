@@ -24,12 +24,7 @@
 		"no-case-declarations": "off",
 		"no-constant-condition": "off",
 		"@typescript-eslint/ban-ts-comment": "off",
-		"@typescript-eslint/no-explicit-any": "off",
-		"linebreak-style": [
-			0,
-			"error",
-			"windows"
-		]
+		"@typescript-eslint/no-explicit-any": "off"
 	},
 	"ignorePatterns": [
 		"**/__tests__/*.ts"

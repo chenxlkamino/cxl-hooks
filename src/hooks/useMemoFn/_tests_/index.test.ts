@@ -1,8 +1,4 @@
-import {
-  act,
-  renderHook,
-  RenderHookResult,
-} from '@testing-library/react-hooks';
+import { act, renderHook, RenderHookResult } from '@testing-library/react-hooks';
 import useMemoFn from '../index';
 import { useState } from 'react';
 

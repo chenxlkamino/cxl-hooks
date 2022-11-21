@@ -5,12 +5,7 @@ type BasicTarget<T = HTMLElement> = T | (() => T);
 
 type NodeType = HTMLElement | Element | Window | Document | null;
 
-const useEventListener = (
-  node: BasicTarget<NodeType>,
-  eventName: string,
-  callback: EventListener,
-  capture = false,
-) => {
+const useEventListener = (node: BasicTarget<NodeType>, eventName: string, callback: EventListener, capture = false) => {
   const listenerRef = useRef(callback);
   listenerRef.current = callback;
 
@@ -22,8 +17,7 @@ const useEventListener = (
 
     target.addEventListener(eventName, listenerRef.current, capture);
 
-    return () =>
-      target?.removeEventListener(eventName, listenerRef.current, capture);
+    return () => target?.removeEventListener(eventName, listenerRef.current, capture);
   }, [nodeFn, eventName, listenerRef, capture]);
 };
 
